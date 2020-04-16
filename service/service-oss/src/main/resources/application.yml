@@ -1,0 +1,15 @@
+#端口号
+server:
+  port: 8002
+#服务名
+spring:
+  application:
+    name: service-oss
+#阿里云oss相关配置
+aliyun:
+  oss:
+    file:
+      endpoint: oss-cn-hangzhou.aliyuncs.com
+      keyid: LTAI4GHPWWP6vqMvXoEqqu2h
+      keysecert: YUT1L4uwQLe0SOb4OphHLpK5OP4kff
+      bucketname: guli-edu-avatar
