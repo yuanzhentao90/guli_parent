@@ -33,6 +33,7 @@ public class EduVideoController {
     //TODO 后面删除小节的时候，同时删除里面的视频
     @DeleteMapping("/deleteEduVideo/{eduVideoId}")
     public StandardResult deleteEduVideo(@PathVariable String eduVideoId){
+        eduVideoService.removeAlyViodeFile(eduVideoId);
         eduVideoService.removeById(eduVideoId);
         return StandardResult.ok();
     }

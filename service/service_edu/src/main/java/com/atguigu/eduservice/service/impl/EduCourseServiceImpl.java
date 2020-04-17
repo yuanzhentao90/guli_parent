@@ -134,6 +134,8 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
     public void deleteCourseById(String courseId) {
 
         //1、删除小节信息
+        //1-1、删除课程所有小节中的视频文件（阿里云平台中）
+        eduVideoService.removeMoreAlyViodeFiles(courseId);
         eduVideoService.removeVideoByCourseId(courseId);
         //2、删除章节信息
         eduChapterService.removeChapterByCourseId(courseId);

@@ -85,7 +85,7 @@ public class EduCourseController {
     }
 
     //根据课程Id删除课程信息
-    @DeleteMapping("/deleteCours/{courseId}")
+    @DeleteMapping("/deleteCourse/{courseId}")
     public StandardResult deleteCourse(@PathVariable String courseId){
         eduCourseService.deleteCourseById(courseId);
         return StandardResult.ok();
