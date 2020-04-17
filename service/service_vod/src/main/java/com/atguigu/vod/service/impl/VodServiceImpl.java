@@ -11,12 +11,13 @@ import com.atguigu.servicebase.exceptionHandler.GuliException;
 import com.atguigu.vod.Utils.ConstantVodUtils;
 import com.atguigu.vod.Utils.InitVodClient;
 import com.atguigu.vod.service.VodService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.swing.table.TableRowSorter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 @Service
 public class VodServiceImpl implements VodService {
@@ -58,4 +59,12 @@ public class VodServiceImpl implements VodService {
             throw new GuliException(20001,"删除视频失败");
         }
     }
+
+    //删除课程时删除该课程下的所有阿里云视频文件
+    @Override
+    public void removeMoreAlyVideos(List<String> videoIdList) {
+        String ids = StringUtils.join(videoIdList.toArray(),',');
+        deleteVideoAly(ids);
+    }
+
 }
