@@ -1,0 +1,18 @@
+server:
+  port: 8003
+
+spring:
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      #单次最大上传单个文件大小为1G，单次最大总上传大小为1G
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+
+
+aliyun:
+  vod:
+    file:
+      keyid: LTAI4GHPWWP6vqMvXoEqqu2h
+      keysecret: YUT1L4uwQLe0SOb4OphHLpK5OP4kff
