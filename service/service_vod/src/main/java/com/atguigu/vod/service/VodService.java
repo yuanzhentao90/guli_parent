@@ -6,4 +6,6 @@ import java.io.IOException;
 
 public interface VodService {
     String uploadVideoAly(MultipartFile file);
+
+    String deleteVideoAly(String id);
 }
