@@ -18,11 +18,11 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+  #开启微服务，注册中心nacos
   cloud:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
-
 #mybatis日志
 mybatis-plus:
   configuration:
@@ -38,3 +38,15 @@ mybatis-plus:
 logging:
   level:
     root: info
+#开启服务熔断机制
+feign:
+  hystrix:
+    enabled: true
+#设置超时时间，不设置默认时间为1000毫秒（1秒）
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000

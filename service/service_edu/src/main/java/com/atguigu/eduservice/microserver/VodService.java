@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Component
-@FeignClient("service-vod")
+@FeignClient(name="service-vod",fallback = VodServiceHystrix.class)
 public interface VodService {
 
     //调用Vod项目中的方法，通过id删除阿里云中的视频
