@@ -30,4 +30,7 @@ public interface EduCourseService extends IService<EduCourse> {
     void pageQuery(Page<EduCourse> page , CourseQuery courseQuery);
 
     void deleteCourseById(String courseId);
+
+    //查出八门热门课程
+    List<EduCourse> getHotCouse();
 }

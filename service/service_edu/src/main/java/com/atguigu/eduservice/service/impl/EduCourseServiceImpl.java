@@ -148,5 +148,14 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         }
     }
 
+    @Override
+    public List<EduCourse> getHotCouse() {
+        QueryWrapper<EduCourse> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("view_count");
+        queryWrapper.last("limit 8");
+        List<EduCourse> courses = baseMapper.selectList(queryWrapper);
+        return courses;
+    }
+
 
 }
