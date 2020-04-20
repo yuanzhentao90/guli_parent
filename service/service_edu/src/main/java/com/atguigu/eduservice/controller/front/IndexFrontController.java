@@ -7,6 +7,7 @@ import com.atguigu.eduservice.service.EduCourseService;
 import com.atguigu.eduservice.service.EduTeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,11 +27,11 @@ public class IndexFrontController {
     @Autowired
     private EduTeacherService teacherService;
     //1、查询前八条热门课程,查询前4名讲师
-    @RequestMapping("/index")
+    @GetMapping("/index")
     public StandardResult index(){
-        List<EduCourse> hotCouses = courseService.getHotCouse();
+        List<EduCourse> hotCourses = courseService.getHotCouse();
         List<EduTeacher> topTeachers = teacherService.getTopTeacher();
-        return StandardResult.ok();
+        return StandardResult.ok().data("courses",hotCourses).data("teachers",topTeachers);
     }
 
 
