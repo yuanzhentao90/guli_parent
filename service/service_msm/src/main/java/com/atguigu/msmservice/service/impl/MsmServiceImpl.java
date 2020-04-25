@@ -22,7 +22,7 @@ public class MsmServiceImpl implements MsmService {
     public boolean send(Map<String, Object> param, String phone) {
         if(StringUtils.isEmpty(phone))
             return false;
-        DefaultProfile profile = DefaultProfile.getProfile("default", "LTAI4GHPWWP6vqMvXoEqqu2h", "YUT1L4uwQLe0SOb4OphHLpK5OP4kff");
+        DefaultProfile profile = DefaultProfile.getProfile("default", "LTAI4GGqF9Guxdk23menv6WQ", "0uYIaBhR6R0LKnv2zmwbHdgjBU8ckN");
         //创建发送短信的对象
         IAcsClient client = new DefaultAcsClient(profile);
         //设置相关参数

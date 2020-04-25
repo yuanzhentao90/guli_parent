@@ -4,6 +4,8 @@ package com.atguigu.eduservice.service.impl;
 import com.atguigu.eduservice.entity.EduChapter;
 import com.atguigu.eduservice.entity.EduCourse;
 import com.atguigu.eduservice.entity.EduCourseDescription;
+import com.atguigu.eduservice.entity.frontvo.CourseFrontVo;
+import com.atguigu.eduservice.entity.frontvo.CourseWebVo;
 import com.atguigu.eduservice.entity.vo.CourseInfoVo;
 import com.atguigu.eduservice.entity.vo.CoursePublishVo;
 import com.atguigu.eduservice.entity.vo.CourseQuery;
@@ -24,7 +26,9 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -160,5 +164,56 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         return courses;
     }
 
+    //客户端条件查询带分页
+    @Override
+    public Map<String, Object> getCourseFrontList(Page<EduCourse> coursePage, CourseFrontVo courseFrontVo) {
+        QueryWrapper<EduCourse> queryWrapper = new QueryWrapper<>();
+
+        if(!StringUtils.isEmpty(courseFrontVo.getSubjectParentId())){
+            queryWrapper.eq("subject_parent_id",courseFrontVo.getSubjectParentId());
+        }
+
+        if(!StringUtils.isEmpty(courseFrontVo.getSubjectId())){
+            queryWrapper.eq("subject_id",courseFrontVo.getSubjectId());
+        }
+
+        if(!StringUtils.isEmpty(courseFrontVo.getBuyCountSort())){
+            queryWrapper.orderByDesc("buy_count");
+        }
+
+        if(!StringUtils.isEmpty(courseFrontVo.getGmtCreateSort())){
+            queryWrapper.orderByDesc("gmt_create");
+        }
+
+        if(!StringUtils.isEmpty(courseFrontVo.getPriceSort())){
+            queryWrapper.orderByDesc("price");
+        }
+
+        baseMapper.selectPage(coursePage,queryWrapper);
+
+        List<EduCourse> records = coursePage.getRecords();
+        long current = coursePage.getCurrent();
+        long pages = coursePage.getPages();
+        long size = coursePage.getSize();
+        long total = coursePage.getTotal();
+        boolean hasNext = coursePage.hasNext();
+        boolean hasPrevious = coursePage.hasPrevious();
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("records",records);
+        map.put("current",current);
+        map.put("pages",pages);
+        map.put("size",size);
+        map.put("total",total);
+        map.put("hasNext",hasNext);
+        map.put("hasPrevious",hasPrevious);
+
+        return map;
+    }
+
+    @Override
+    public CourseWebVo getBaseCouseInfo(String courseId) {
+        return baseMapper.getBaseCouseInfo(courseId);
+    }
 
 }

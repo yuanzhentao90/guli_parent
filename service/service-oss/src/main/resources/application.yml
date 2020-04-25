@@ -14,6 +14,6 @@ aliyun:
   oss:
     file:
       endpoint: oss-cn-hangzhou.aliyuncs.com
-      keyid: LTAI4GHPWWP6vqMvXoEqqu2h
-      keysecert: YUT1L4uwQLe0SOb4OphHLpK5OP4kff
+      keyid: LTAI4GGqF9Guxdk23menv6WQ
+      keysecert: 0uYIaBhR6R0LKnv2zmwbHdgjBU8ckN
       bucketname: guli-edu-avatar
