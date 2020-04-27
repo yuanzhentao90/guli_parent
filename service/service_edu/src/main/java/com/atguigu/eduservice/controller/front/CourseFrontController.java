@@ -1,6 +1,7 @@
 package com.atguigu.eduservice.controller.front;
 
 import com.atguigu.commonutils.StandardResult;
+import com.atguigu.commonutils.ordervo.CourseWebVoOrder;
 import com.atguigu.eduservice.entity.EduCourse;
 import com.atguigu.eduservice.entity.chapter.ChapterVo;
 import com.atguigu.eduservice.entity.frontvo.CourseFrontVo;
@@ -8,6 +9,7 @@ import com.atguigu.eduservice.entity.frontvo.CourseWebVo;
 import com.atguigu.eduservice.service.EduChapterService;
 import com.atguigu.eduservice.service.EduCourseService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,5 +51,16 @@ public class CourseFrontController {
         List<ChapterVo> chapterVideoList = chapterService.getChapterVideoByCourseId(courseId);
 
         return StandardResult.ok().data("courseWebVo",courseWebVo).data("chapterVideoList",chapterVideoList);
+    }
+
+
+    //===============================================订单支付微服务调用==================================================
+    //根据id获取课程信息
+    @PostMapping("/getCourseInfoOrder/{id}")
+    public CourseWebVoOrder getCourseInfoOrder(@PathVariable String id){
+        CourseWebVo couseInfo = courseService.getBaseCouseInfo(id);
+        CourseWebVoOrder course = new CourseWebVoOrder();
+        BeanUtils.copyProperties(couseInfo,course);
+        return course;
     }
 }
