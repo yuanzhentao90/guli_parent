@@ -49,7 +49,7 @@ public class PayLogController {
             payLogService.updataOrderStatus(map);
             return StandardResult.ok().message("支付成功");
         }
-        return StandardResult.ok().message("支付中");
+        return StandardResult.ok().code(25000).message("支付中");
     }
 }
 
