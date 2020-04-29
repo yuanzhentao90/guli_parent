@@ -22,4 +22,7 @@ public interface UcenterMemberService extends IService<UcenterMember> {
 
     //根据微信openid获取用户的方法
     UcenterMember getMemberByOpenId(String openid);
+
+    //统计每天注册人数
+    Integer dayRegisterCount(String day);
 }
